@@ -37,8 +37,8 @@
         .info {
             background-color:#DBBE9F;
             width:160px;
+            /* height:120px; 삭제해야함!*/
         }
-
     </style>
 </head>
 
