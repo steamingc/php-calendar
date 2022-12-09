@@ -10,7 +10,7 @@
     <style type="text/css">
         .table1 { 
             border:1px solid white; 
-            width:720px; 
+            /* width:720px;  */
             background-color:#DBBE9F; 
             border-collapse:collapse; 
             text-align:center; 
@@ -26,18 +26,29 @@
         .sunday {
             width:80px; 
             height:80px;
-            color:#6A8DAB;
+            color:#B75F5F;
         }
 
-        /* .bg {
-            width:720px;
-            background-color:#DBBE9F;
-        } */
+        .saturday {
+            width:80px; 
+            height:80px;
+            color:#6A8DAB;
+        }
 
         .info {
             background-color:#DBBE9F;
             width:160px;
+            color:#6A8DAB;
+            border-collapse:collapse;
         }
+
+        .year {
+            height:175px;
+            border:1px solid white;
+            text-align:center; 
+            vertical-align:middle;
+        }
+
     </style>
 </head>
 
@@ -47,9 +58,9 @@
         // echo "$today"."<br>";   //날짜 확인
         // echo var_dump($today);  //변수 타입 확인
 
-        //함수 생성
-        function cal($today) {
 
+        //함수 생성
+        // function cal($today) {
             $today_arr = explode("-", $today);    //오늘 날짜의 연,월,일을 분리하여 저장
             $today_arr_y = $today_arr[0];   //연
             $today_arr_m = $today_arr[1];   //월
@@ -64,17 +75,45 @@
             $line = ceil($line);    //올림
             $line = $line - 1;
 
+            // //지난 달
+            $p_m=date("Y-m-d", mktime(0,0,0,$today_arr_m-1,$today_arr_d,$today_arr_y));
+
+            // //다음 달
+            $n_m=date("Y-m-d", mktime(0,0,0,$today_arr_m+1,$today_arr_d,$today_arr_y));
+
+            echo "<div style=\"display:inline-flex; height:175px;\">";
+            echo "
+            <div>
+                <table class=\"info\">
+                    <tr><td class=\"year\">
+                        <h3 style=\"text-decoration:underline\">&nbsp&nbsp&nbsp".$today_arr_y."&nbsp&nbsp&nbsp</h3>
+                        <h1>".$today_arr_m."</h1>
+                    </td></tr>".
+                    //지난 달, 다음 달 넘어가는 여기 수정해야 함!! ㅜㅜㅜ
+                    "<tr><td class=\"year\"><h1><a href=<?php echo 'calendar.php?today=$p_m';>◀ ".($today_arr_m-1)."</a><h1></td></tr> 
+
+                    <tr><td class=\"year\"><h1>";
+                    if($today_arr_m<12) { 
+                        echo "$today_arr_m+1";
+                    } else if($today_arr_m==12){
+                        echo "1";
+                    }
+                    echo " ▶<h1></td></tr>
+                
+                </table>
+            </div>";
+    
+            echo "<div>";
             echo ("
                 <table class=\"table1\">
                     <tr>
-                        <th class=\"info\" rowspan=\"2\"><h1>".$today_arr_y."년 </h1></th>
                         <th class=\"sunday\"><h1>S</h1></th>
                         <th><h1>M</h1></th>
                         <th><h1>T</h1></th>
                         <th><h1>W</h1></th>
                         <th><h1>T</h1></th>
                         <th><h1>F</h1></th>
-                        <th><h1>S</h1></th>
+                        <th class=\"saturday\"><h1>S</h1></th>
                     </tr>
             ");
             
@@ -87,8 +126,10 @@
                         $iv = 7 * $i + $j;
                         $iu = $iv - $line;  
 
-                        if($j==1&&$i%2==1) { //일요일 날짜 색상 다르게
-                            echo "<td class=\"sunday\" rowspan=\"2\"><h1>";
+                        if($j==1) { //일요일 날짜 색상 다르게
+                            echo "<td class=\"sunday\"><h1>";
+                        } else if($j==7) {  //토요일
+                            echo "<td class=\"saturday\"><h1>";
                         } else echo "<td><h1>";
 
                         if($iu <= 0 || $iu > $this_month_tday) { 
@@ -102,24 +143,13 @@
                     echo "</tr>";
             }
             echo "</table>";
-        }
+            echo "</div>";
+            echo "</div>";
+        // }
     ?>
-
+<!-- 
     <?php
-        // echo "
-        // <div style=\"float:left;\">
-        //     <table class=\"info\">
-        //         <tr></tr>
-        //         <tr></tr>
-        //         <tr></tr>
-            
-        //     </table>
-        // </div>";
-
-        // echo "<div style=\"float:left;\">";
-        cal($today);
-        // echo "</div>";
-    ?>
-
+        echo cal(today);
+    ?> -->
 </body>
 </html>
