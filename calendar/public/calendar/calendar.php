@@ -55,13 +55,15 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
         <!-- style 태그의 type 속성은 style 요소의 미디어 타입을 명시함. text/css 속성값은 콘텐츠가 css임을 나타낸다 -->
         <!-- css : 스타일, 레이아웃 등 사용자에게 문서를 표시하는 방법을 지정하는 언어 -->
         <style type="text/css">
+            /* 전체 div태그 */
             .row {
                 width: 720px;
                 /* 디브 태그 간의 높이를 같게 한다 (폭도 같이 하고 싶으면 flex:1 추가하기) */
                 display: inline-flex; 
             }
 
-            .table1 {
+            /* 캘린더 테이블 속성 */
+            .cal_table {
                 border: 1px solid white;
                 width: 560px; 
                 background-color: #DBBE9F;
@@ -70,6 +72,23 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
                 color: white;
             }
 
+            /* 캘린더 옆 컨트롤용 테이블 */
+            .info {
+                width: 160px;
+                background-color: #DBBE9F;
+                color: #6A8DAB;
+                border-collapse: collapse;
+            }
+
+            /* 컨트롤러 */
+            td.control {
+                height: 140px;
+                border: 1px solid white;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            /* 캘린더 내부 기본 td, th */
             th, 
             td {
                 border: 1px solid white;
@@ -78,11 +97,13 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
                 vertical-align: middle;
             }
 
+            /* a태그 속성 수정 */
             a {
-                text-decoration:none;
-                color: #6A8DAB;
+                text-decoration:none;   /*클릭시 언더라인 효과 삭제*/
+                color: #6A8DAB;         /*클릭시 보라색으로 색상 변경되는 것 수정 */
             }
 
+            /* 요일별 속성들 */
             .sunday {
                 color: #B75F5F;
                 text-align: center;
@@ -99,28 +120,20 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
             }
 
             .today {
-                color: #070707;
+                color: #353535;
                 text-align: center;
-                font-weight: bold;
                 text-decoration: underline;
-                
             }
 
-            .info {
-                background-color: #DBBE9F;
-                width: 160px;
-                color: #6A8DAB;
-                border-collapse: collapse;
+            h1.thismonth {
+                margin-top: 0em;
             }
 
-            .year {
-                height: 140px;
-                border: 1px solid white;
-                text-align: center;
-                vertical-align: middle;
+            h3.thisyear {
+                margin-bottom: 0em;
+                text-decoration: underline;
             }
 
-            
         </style>
     </head>
 
@@ -129,15 +142,15 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
         <div class="row">
             <table class="info">
                 <tr>
-                    <td class="year">
-                        <h4 style="text-decoration:underline">&nbsp&nbsp&nbsp<?php echo $year ?>&nbsp&nbsp&nbsp</h4>
-                        <h1><?php echo $month ?></h1>
+                    <td class="control">
+                        <h3 class="thisyear">&nbsp&nbsp&nbsp<?php echo $year ?>&nbsp&nbsp&nbsp</h3>
+                        <h1 class="thismonth"><?php echo $month ?></h1>
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="year">
-                        <h2>
+                    <td class="control">
+                        <h2>Month<br>
                             <a href=<?php echo 'index.php?year='.$prev_year.'&month='.$prev_month.'&day=1'; ?>>◀ </a>
                             <a href=<?php echo 'index.php?year='.$next_year.'&month='.$next_month.'&day=1'; ?>> ▶</a>
                         </h2>
@@ -145,8 +158,8 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
                 </tr>
 
                 <tr>
-                    <td class="year">
-                        <h2>
+                    <td class="control">
+                        <h2>Year<br>
                         <a href=<?php echo 'index.php?year='.$preyear.'&month='.$month.'&day=1'; ?>>◀◀ </a>
                         <a href=<?php echo 'index.php?year='.$nextyear.'&month='.$month.'&day=1'; ?>> ▶▶</a>
                         </h2>
@@ -154,18 +167,18 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
                 </tr>
 
                 <tr>
-                    <td class="year">
+                    <td class="control">
                         <h2>
                             <a
                                 href=<?php echo 'index.php?year='.$thisyear.'&month='.$thismonth.'&day='.$today; ?>>
-                                오늘</a>
+                                TODAY</a>
                         </h2>
                     </td>
                 </tr>
 
             </table>
             
-            <table class="table1">
+            <table class="cal_table">
                 <tr>
                     <th class="sunday">
                         <h1>S</h1>
