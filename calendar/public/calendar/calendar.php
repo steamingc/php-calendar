@@ -28,21 +28,29 @@ $preyear = $year - 1;
 $nextyear = $year + 1;
 
 //---- 어제, 내일 버튼
-$predate = date("Y-m-d", mktime(0, 0, 0, $month - 1, 1, $year));
-$nextdate = date("Y-m-d", mktime(0, 0, 0, $month + 1, 1, $year));
+// $predate = date("Y-m-d", mktime(0, 0, 0, $month - 1, 1, $year));
+// $nextdate = date("Y-m-d", mktime(0, 0, 0, $month + 1, 1, $year));
 
 // 1. 총일수 구하기
+// date함수의 포맷문자열 't'를 사용. 't'는 주어진 월의 일수를 구하는 형식 문자로 특정월의 마지막 날짜를 구하는 방법
 $max_day = date('t', mktime(0, 0, 0, $month, 1, $year)); // 해당월의 마지막 날짜
-//echo '총요일수'.$max_day.'<br />';
+// echo '총요일수'.$max_day.'<br />';
 
 // 2. 시작요일 구하기
+// w는 요일 숫자값
 $start_week = date("w", mktime(0, 0, 0, $month, 1, $year)); // 일요일 0, 토요일 6
+// echo '시작 요일'.$start_week.'<br />';
 
 // 3. 총 몇 주인지 구하기
+// ceil: 올림 함수
+// 요일 숫자값(start_week)은 1일 시작 전 달력의 공백 숫자로도 인식 가능
+// 달력 공백 + 총 일 수 = 달력 첫 칸부터 마지막 날까지의 칸 개수 / 여기서 7로 나눈 뒤 올림하면 총 몇 주인지 알 수 있음.
 $total_week = ceil(($max_day + $start_week) / 7);
+// echo '총 몇 주'.$total_week.'<br/>';
 
 // 4. 마지막 요일 구하기
 $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
+// echo '마지막 요일'.$last_week.'<br />';
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +72,8 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
 
             /* 캘린더 테이블 속성 */
             .cal_table {
+                width: 560px;
                 border: 1px solid white;
-                width: 560px; 
                 background-color: #DBBE9F;
                 border-collapse: collapse;
                 text-align: center;
@@ -93,7 +101,7 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
             td {
                 border: 1px solid white;
                 width: 80px;
-                height: 80px;
+                /* height: 80px; */
                 vertical-align: middle;
             }
 
@@ -125,6 +133,7 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
                 text-decoration: underline;
             }
 
+            /* 해당 월, 연도 폰트 */
             h1.thismonth {
                 margin-top: 0em;
             }
@@ -160,7 +169,7 @@ $last_week = date('w', mktime(0, 0, 0, $month, $max_day, $year));
                 <tr>
                     <td class="control">
                         <h2>Year<br>
-                        <a href=<?php echo 'index.php?year='.$preyear.'&month='.$month.'&day=1'; ?>>◀◀ </a>
+                        <a href=<?= 'index.php?year='.$preyear.'&month='.$month.'&day=1'; ?>>◀◀ </a>
                         <a href=<?php echo 'index.php?year='.$nextyear.'&month='.$month.'&day=1'; ?>> ▶▶</a>
                         </h2>
                     </td>
