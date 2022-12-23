@@ -1,0 +1,306 @@
+/* ---------- common ----------*/
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+input {
+    border: none;
+    background-color: transparent;
+    /* color: aliceblue; */
+}
+
+input:focus {
+    outline: none;
+}
+
+
+textarea {
+    border: none;
+    background-color: transparent;
+}
+
+textarea:focus {
+    outline-color: #ffd3d5;
+}
+
+
+/* ---------- board_write ---------- */
+.main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    float: left;
+}
+
+.main > #main_main {
+    /* display: flex; */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#title {
+    width: 550px;
+    height: 16px;
+}
+
+#name {
+    width: 550px;
+    height: 16px;
+}
+
+#content {
+    width: 550px;
+    height: 200px;
+    margin: 5px 5px 5px 0;
+}
+
+.board-title {
+    margin: 20px 0 20px 10px;
+    padding: 0 0 5px 0;
+    text-align: center;
+}
+
+.main table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.col1 {
+    background-color: #b7dbda;
+    border-bottom: solid 1px #a4cac9;
+    width: 150px;
+    text-align: center;
+}
+
+.col2 {
+    padding: 5px 0 0 10px; /* padding 내용과 테두리 사이 간격(top-right-bottom-left) */
+    border-bottom: solid 1px #a4cac9;
+}
+
+.col2 .upload_file {
+    display: inline-block;
+    height: 25px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 76%;
+    color: #999999;
+}
+
+.col2 label {
+    display: inline-block;
+    padding: 10px 20px;
+    /* color: #fbc1c5; */
+    font-size: 12px;
+    vertical-align: middle;
+    background-color: #b7dbda;
+    cursor: pointer;
+    height: 12px;
+    margin-left: 10px;
+}
+
+.col2 label:hover {
+    background: #ffd3d5;
+}
+
+.col2 input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.buttons{
+    display: block;
+}
+
+.buttons > button {
+    margin: 10px 5px 0 10px;
+    border-radius: 5px;
+    border: none;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background-color: #b7dbda;
+}
+
+.buttons > button:hover {
+    background: #ffd3d5;
+}
+
+#a-btn {
+    float: left;
+}
+
+#rgt-btn {
+    cursor: pointer;
+    text-align: center;
+    float: right;
+    /* margin: 0 auto; */
+}
+
+
+/* ---------- board_list ---------- */
+#board_area {
+    width: 1100px;
+    float: left;
+    position: relative;
+}
+
+#board_area > h1 {
+    padding: 10px 0 0 10px;
+    text-align: center;
+    color: #1F6C75;
+}
+
+.list-table {
+    margin-top: 40px;
+}
+
+.list-table thead th {
+    height: 40px;
+    border-top: 2px solid #a4cac9;
+    border-bottom: 1px solid #CCC;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.list-table tbody td{
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc; 
+    height: 20px;
+    font-size: 14px;
+}
+
+#list-footer {
+    display: flex;
+    justify-content: center;
+}
+
+/* #write_btn {
+    position: absolute;
+    margin-top: 20px;
+    margin-right: 20px;
+    right: 0;
+} */
+
+#write_btn {
+    margin: 10px 5px 0 10px;
+    border-radius: 5px;
+    border: none;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background-color: #b7dbda;
+    position: absolute;
+    right: 0;
+}
+
+#write_btn:hover {
+    background: #ffd3d5;
+}
+
+#page_num {
+    font-size: 14px;
+    /* margin-left: 260px;
+    margin-top: 30px; */
+    /* margin: auto; */
+    position: absolute;
+    left: 40%;
+}
+
+#page_num ul li {
+    float: left;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.thispage {
+    font-weight: bold;
+    color: black;
+}
+
+/* ---------- board_read ---------- */
+#board_read  {
+    width: 500px;
+    display: inline-block;
+    /* position: relsative; */
+    word-break: break-all;  /*글 띄어쓰기 관련*/
+}
+
+#board_read > h2 {
+    margin: 10px 0 10px 10px;
+    padding: 2px 0 2px 0;
+}
+
+#user_info {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 16px;
+    padding-bottom: 1px;
+}
+
+#ui_left {
+    float: left;
+}
+
+#ui_right {
+    float: right;
+}
+
+#line {
+    width: 510px;
+    height: 2px;
+    background: #a4cac9;
+    margin-top: 50px;
+}
+
+#read_content {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 500px;
+    height: 200px;
+}
+
+#menu {
+    padding-top: 5px;
+    font-size: 14px;
+    color: #333;
+    /* position: absolute; */
+    right: 0;
+    float: right;
+}
+
+#menu > ul > li {
+    float: left;
+    margin-left: 10px;
+}
+
+#menu > ul > li > button {
+    margin: 10px 0 0 0;
+    border-radius: 5px;
+    border: none;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background-color: #b7dbda;
+}
+
+
+#menu > ul > li > button:hover {
+    background: #ffd3d5;
+}

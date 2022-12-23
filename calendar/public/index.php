@@ -1,5 +1,6 @@
 <?php
-require_once './calendar/calendar.php';
+// require_once './Board/board_write.php';
+require_once 'board_list.php';
 exit;
 
 use Illuminate\Contracts\Http\Kernel;
